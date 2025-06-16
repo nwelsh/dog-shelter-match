@@ -1,0 +1,85 @@
+
+:root {
+    --font-family-base: Arial, Helvetica, sans-serif;
+    --size__light: 300;
+    --size__medium: 400;
+    --size__normal: 500;
+    --size__bold: 600;
+    --size__thick: 700;
+  }
+
+@mixin fonts__h1 {
+  font-family: var(--font-family-base);
+  font-size: 48px;
+  font-weight: var(--size__thick);
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
+}
+
+@mixin fonts__h2 {
+  font-family: var(--font-family-base);
+  font-size: 36px;
+  font-weight: var(--size__thick);
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
+}
+
+@mixin fonts__h3 {
+  font-family: var(--font-family-base);
+  font-size: 24px;
+  font-weight: var(--size__bold);
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+}
+
+@mixin fonts__h3 {
+    font-family: var(--font-family-base);
+    font-size: 18px;
+    font-weight: var(--size__bold);
+  
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+
+@mixin fonts__p {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--size__medium);
+  line-height: 1.5;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+
+@mixin fonts__button {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--size__normal);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
