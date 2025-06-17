@@ -6,6 +6,7 @@
     --size__normal: 500;
     --size__bold: 600;
     --size__thick: 700;
+    --container-padding: 100px;
   }
 
 @mixin fonts__h1 {
@@ -78,8 +79,8 @@
 
 @mixin fonts__button {
   font-family: var(--font-family-base);
-  font-size: 16px;
+  font-size: 12px;
   font-weight: var(--size__normal);
   letter-spacing: 0.5px;
-  text-transform: uppercase;
+
 }

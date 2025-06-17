@@ -4,16 +4,23 @@
 .search-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1rem;
+
+  //   padding to entire container for large screens
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
 }
 
 .search-controls {
   display: flex;
   gap: 1rem;
+  padding-left: 1rem
 }
 
 .title {
   @include fonts__h2;
+  align-self: center;
+  margin: 0;
 }
 
 .paragraph {
@@ -22,35 +29,46 @@
 
 .sort-select {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
+  @include fonts__p;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .dog-grid {
   display: flex;
   flex-wrap: wrap;
-  max-width: 75vw;
   align-self: center;
+  justify-content: center;
 }
 
 .pagination {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .match-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .match-card {
-    width: 350px;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
+  width: 350px;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.button, .select-label, .select-option {
+    @include fonts__button;
 }

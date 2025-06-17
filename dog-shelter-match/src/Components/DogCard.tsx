@@ -1,6 +1,6 @@
-// components/DogCard.tsx
 import "./DogCard.scss";
 import classNames from "classnames";
+import * as React from "react";
 
 export interface Dog {
   id: string;
@@ -18,13 +18,13 @@ interface DogCardProps {
   isMatch?: boolean;
 }
 
-const DogCard = ({ dog, isFavorite, onToggleFavorite, isMatch = false }: DogCardProps) => {
-  const {img, name, breed, age, zip_code, id} = dog || {};
-
+const DogCard = React.forwardRef<HTMLDivElement, DogCardProps>(
+  ({ dog, isFavorite, onToggleFavorite, isMatch }, ref) => {
+    const { img, name, breed, age, zip_code, id } = dog;
 
   return (
-    <div className="dog-card" onClick={() => onToggleFavorite(id)}>
-    {isMatch && <p>x</p>}
+    <div className="dog-card" ref={ref} onClick={() => onToggleFavorite(id)}>
+    {isMatch && <p className="exit-button" onClick={() => !isMatch}>X</p>}
       <img className={classNames("image", { "image--match": isMatch })} src={img} alt={`Photo of ${name}`} />
       <div className="description-container">
         <h3 className="name">{name}</h3>
@@ -48,6 +48,6 @@ const DogCard = ({ dog, isFavorite, onToggleFavorite, isMatch = false }: DogCard
       </div>
     </div>
   );
-};
+});
 
 export default DogCard;

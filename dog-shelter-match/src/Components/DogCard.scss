@@ -10,7 +10,7 @@
 
 
     &:hover {
-        background-color: var(--colors__tertiary);
+        background-color: rgba(var(--colors__tertiary), .5);
     }
 }
 

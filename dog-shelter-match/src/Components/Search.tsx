@@ -1,6 +1,7 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import "./Search.scss";
 import DogCard from "./DogCard";
+import gsap from "gsap";
 
 export interface Dog {
   id: string;
@@ -11,7 +12,7 @@ export interface Dog {
   breed: string;
 }
 
-const pageSize = 12;
+const pageSize = 9;
 
 const fetchBreeds = async (): Promise<string[]> => {
   const res = await fetch(
@@ -88,6 +89,7 @@ const SearchPage = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [matchDog, setMatchDog] = useState<Dog | null>(null);
+  const cardRefs = useRef([]);
 
   const totalPages = Math.ceil(total / pageSize);
 
@@ -140,6 +142,16 @@ const SearchPage = () => {
     ? dogs.filter((dog) => favorites.includes(dog.id))
     : dogs;
 
+    useEffect(() => {
+      gsap.from(cardRefs.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        stagger: 0.1, // <- one at a time
+        ease: "power2.out",
+      });
+    }, [displayedDogs]);
+
   return (
     <div className="search-container">
       <h2 className="title">Dog Search</h2>
@@ -150,10 +162,11 @@ const SearchPage = () => {
           <select
             value={selectedBreed}
             onChange={(e) => setSelectedBreed(e.target.value)}
+            className="select-label"
           >
             <option value="">All Breeds</option>
             {breeds.map((breed) => (
-              <option key={breed} value={breed}>
+              <option key={breed} value={breed} className="select-option">
                 {breed}
               </option>
             ))}
@@ -165,40 +178,53 @@ const SearchPage = () => {
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as "asc" | "desc")}
+            className="select-label"
           >
-            <option value="asc">Breed (A-Z)</option>
-            <option value="desc">Breed (Z-A)</option>
+            <option value="asc" className="select-option">
+              Breed (A-Z)
+            </option>
+            <option value="desc" className="select-option">
+              Breed (Z-A)
+            </option>
           </select>
         </label>
 
-        <button onClick={() => setShowFavoritesOnly((prev) => !prev)}>
+        <button
+          onClick={() => setShowFavoritesOnly((prev) => !prev)}
+          className="button"
+        >
           {showFavoritesOnly ? "Show All Dogs" : "Show Favorited Dogs"}
         </button>
 
-        <button onClick={handleMakeMatch} disabled={favorites.length === 0}>
-          Find My Match
+        <button
+          onClick={handleMakeMatch}
+          disabled={favorites.length === 0}
+          className="button"
+        >
+          Find Your Match!
         </button>
 
         {matchDog && (
           <div className="match-container">
             <div className="match-card">
-            <DogCard
-              dog={matchDog}
-              isFavorite={favorites.includes(matchDog.id)}
-              onToggleFavorite={() => {}}
-              isMatch={true}
-            />
+              {/* TODO close match */}
+              <DogCard
+                dog={matchDog}
+                isFavorite={favorites.includes(matchDog.id)}
+                onToggleFavorite={() => {}}
+                isMatch={true}
+              />
             </div>
           </div>
         )}
       </div>
 
       {loading ? (
-        <p className="paragraph">Loading dogs...</p>
+        <p className="loading-text">Loading dogs...</p>
       ) : error ? (
         <p className="error">{error}</p>
       ) : (
-        <>
+        <div className="grid-container">
           <div className="dog-grid">
             {displayedDogs.length === 0 ? (
               <p className="paragraph">
@@ -211,6 +237,7 @@ const SearchPage = () => {
                 <DogCard
                   key={dog.id}
                   dog={dog}
+                  // ref={(el) => (cardRefs.current[i] = el)}
                   isFavorite={favorites.includes(dog.id)}
                   onToggleFavorite={toggleFavorite}
                 />
@@ -235,7 +262,7 @@ const SearchPage = () => {
               Next
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
