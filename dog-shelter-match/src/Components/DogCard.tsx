@@ -23,8 +23,15 @@ const DogCard = React.forwardRef<HTMLDivElement, DogCardProps>(
     const { img, name, breed, age, zip_code, id } = dog;
 
   return (
-    <div className="dog-card" ref={ref} onClick={() => onToggleFavorite(id)}>
+    <div className={classNames('dog-card', {'dog-card--match': isMatch})} ref={ref} onClick={() => onToggleFavorite(id)}>
     {isMatch && <p className="exit-button" onClick={() => !isMatch}>X</p>}
+    <button
+          className={`favorite-btn ${isFavorite ? "favorited" : ""}`}
+          onClick={() => onToggleFavorite(id)}
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+        >
+          {isFavorite ? "❤️" : "🤍"}
+        </button>
       <img className={classNames("image", { "image--match": isMatch })} src={img} alt={`Photo of ${name}`} />
       <div className="description-container">
         <h3 className="name">{name}</h3>
@@ -38,13 +45,7 @@ const DogCard = React.forwardRef<HTMLDivElement, DogCardProps>(
           <strong>Zip Code:</strong> {zip_code}
         </p>
 
-        <button
-          className={`favorite-btn ${isFavorite ? "favorited" : ""}`}
-          onClick={() => onToggleFavorite(id)}
-          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-        >
-          {isFavorite ? "❤️" : "🤍"}
-        </button>
+       
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import './Login.scss'
+import FetchLogo from "../assets/Images/fetch-logo.jpg"
 
 type LoginProps = {
     onLogin: (email: string, name: string) => void
@@ -16,6 +17,7 @@ type LoginProps = {
   
     return (
       <div className="main">
+          <img src={FetchLogo} alt='fetch-logo' className="logo"></img> 
         <form className="form" onSubmit={handleSubmit}>
           <h2 className="login__header">Login</h2>
           <input

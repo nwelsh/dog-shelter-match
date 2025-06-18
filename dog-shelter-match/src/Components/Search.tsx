@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import "./Search.scss";
 import DogCard from "./DogCard";
 import gsap from "gsap";
+import FetchLogo from "../assets/Images/fetch-logo.jpg"
 
 export interface Dog {
   id: string;
@@ -55,6 +56,7 @@ const fetchSearchResults = async (
   const searchData = await searchRes.json();
 
   const dogDetails = await fetchDogDetails(searchData.resultIds);
+
   return { dogs: dogDetails, total: searchData.total };
 };
 
@@ -92,6 +94,8 @@ const SearchPage = () => {
   const cardRefs = useRef([]);
 
   const totalPages = Math.ceil(total / pageSize);
+
+  console.log(favorites, favorites.length)
 
   useEffect(() => {
     fetchBreeds()
@@ -147,15 +151,16 @@ const SearchPage = () => {
         opacity: 0,
         y: 20,
         duration: 0.5,
-        stagger: 0.1, // <- one at a time
+        stagger: 0.1, 
         ease: "power2.out",
       });
     }, [displayedDogs]);
 
   return (
     <div className="search-container">
-      <h2 className="title">Dog Search</h2>
+            {/* <img src={FetchLogo} alt='fetch-logo' className="logo-image"></img> */}
 
+      <h2 className="title">Find Your Perfect Match</h2>
       <div className="search-controls">
         <label className="sort-select">
           Filter by Breed:
@@ -201,7 +206,7 @@ const SearchPage = () => {
           disabled={favorites.length === 0}
           className="button"
         >
-          Find Your Match!
+          Match Me!
         </button>
 
         {matchDog && (
@@ -237,7 +242,6 @@ const SearchPage = () => {
                 <DogCard
                   key={dog.id}
                   dog={dog}
-                  // ref={(el) => (cardRefs.current[i] = el)}
                   isFavorite={favorites.includes(dog.id)}
                   onToggleFavorite={toggleFavorite}
                 />
@@ -245,7 +249,7 @@ const SearchPage = () => {
             )}
           </div>
 
-          <div className="pagination">
+         {!showFavoritesOnly && <div className="pagination">
             <button
               onClick={() => setCurrentPage((p) => Math.max(p - 1, 0))}
               disabled={currentPage === 0}
@@ -254,14 +258,14 @@ const SearchPage = () => {
             </button>
             <p className="paragraph">
               Page {currentPage + 1} of {totalPages}
-            </p>
+            </p> 
             <button
               onClick={() => setCurrentPage((p) => p + 1)}
               disabled={(currentPage + 1) * pageSize >= total}
             >
               Next
             </button>
-          </div>
+          </div>}
         </div>
       )}
     </div>

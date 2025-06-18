@@ -82,5 +82,15 @@
   font-size: 12px;
   font-weight: var(--size__normal);
   letter-spacing: 0.5px;
+  background-color: var(--colors__purple-primary);
+  border-radius: 2rem;
+  color: var(--colors__white);
+  padding: .5rem 1rem;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
+  &:hover {
+    background-color: var(--colors__brand-primary);
+
+  }
 }

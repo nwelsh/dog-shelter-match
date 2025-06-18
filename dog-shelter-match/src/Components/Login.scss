@@ -6,7 +6,15 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: var(--colors__tertiary);
+    background: var(--colors__purple-secondary);
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .logo {
+    height: 250px;
+    width: 100%;
+    object-fit: contain;
   }
   
   .form {
@@ -23,18 +31,18 @@
   .input {
     padding: 0.75rem;
     font-size: 1rem;
-    border: 1px solid var(--colors__tertiary);
+    border: 1px solid var(--colors__purple-primary);
     border-radius: 0.5rem;
 
     &:focus {
       outline: none;
-      border-color: var(--colors__secondary);
+      border-color: var(--colors__brand-secondary);
     }
   }
 
   .login-button {
     padding: 0.75rem;
-    background-color: var(--colors__secondary);
+    background-color: var(--colors__brand-secondary);
     color: var(--colors__white);
     font-size: 1rem;
     border: none;
@@ -43,14 +51,14 @@
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
     &:hover {
-      background-color: var(--colors__tertiary);
+      background-color: var(--colors__purple-primary);
     }
   }
 
   .login__header {
     margin: 0;
     text-align: center;
-    color: var(--colors__tertiary);
+    color: var(--colors__purple-primary);
 
     @include fonts__h1;
   }
