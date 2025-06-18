@@ -1,5 +1,5 @@
-@import "../Styles/colors";
-@import "../Styles/fonts";
+@use "../Styles/colors" as *;
+@use "../Styles/fonts" as *;
 
 .dog-card {
   background-color: var(--colors__gray-1);
@@ -58,9 +58,9 @@
 }
 
 .description {
+    margin: 0;
+
   @include fonts__p;
-  
-  margin: 0;
 }
 
 .exit-button {

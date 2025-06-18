@@ -1,5 +1,5 @@
-@import "../Styles/colors";
-@import "../Styles/fonts";
+@use "../Styles/colors" as *;
+@use "../Styles/fonts" as *;
 
 .main {
   display: flex;

@@ -1,9 +1,10 @@
-@import "../Styles/colors";
-@import "../Styles/fonts";
+@use "../Styles/colors" as *;
+@use "../Styles/fonts" as *;
 
 .loading-text {
-  @include fonts__h3;
   align-self: center;
+
+  @include fonts__h3;
 }
 
 .search-container {
@@ -35,15 +36,15 @@
 }
 
 .title {
-  @include fonts__h2;
-  
   align-self: center;
   margin-top: 2rem;
+  @include fonts__h2;
 }
 
 .directions {
-  @include fonts__p;
   align-self: center;
+
+  @include fonts__p;
 }
 
 .paragraph {
