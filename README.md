@@ -6,9 +6,9 @@ figma: https://www.figma.com/design/cSqOSXN6PTKbvF4ulEaZB0/Dog-Shelter-Match?nod
 
 hosted: https://nwelsh.github.io/dog-shelter-match/
 
-To Run Locally
-
-Clone repo
-cd dog-shelter-match
-npm i
-npm run dev
+**To Run Locally
+**
+1. Clone repo
+2. cd dog-shelter-match
+3. npm i
+4. npm run dev
