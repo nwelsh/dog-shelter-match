@@ -1,0 +1,100 @@
+:root {
+  --font-family-base: Arial, Helvetica, sans-serif;
+  --size__light: 300;
+  --size__medium: 400;
+  --size__normal: 500;
+  --size__bold: 600;
+  --size__thick: 700;
+  --container-padding: 100px;
+}
+
+$breakpoint-tablet: 620px;
+$breakpoint-desktop: 1024px;
+
+@mixin fonts__h1 {
+  font-family: var(--font-family-base);
+  font-size: 48px;
+  font-weight: var(--size__thick);
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-desktop) {
+    font-size: 36px;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 28px;
+  }
+}
+
+@mixin fonts__h2 {
+  font-family: var(--font-family-base);
+  font-size: 36px;
+  font-weight: var(--size__thick);
+
+  @media (max-width: $breakpoint-desktop) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 24px;
+  }
+}
+
+@mixin fonts__h3 {
+  font-family: var(--font-family-base);
+  font-size: 24px;
+  font-weight: var(--size__bold);
+
+  @media (max-width: $breakpoint-desktop) {
+    font-size: 20px;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 18px;
+  }
+}
+
+@mixin fonts__h3 {
+  font-family: var(--font-family-base);
+  font-size: 18px;
+  font-weight: var(--size__bold);
+
+  @media (max-width: $breakpoint-desktop) {
+    font-size: 16px;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 12px;
+  }
+}
+
+@mixin fonts__p {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--size__medium);
+  line-height: 1.5;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 12px;
+  }
+}
+
+@mixin fonts__button {
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: var(--size__normal);
+  letter-spacing: 0.5px;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--colors__brand-primary);
+  transition: background-color 0.3s ease, color 0.3s ease,
+  border-color 0.3s ease;
+  background-color: transparent;
+  color: var(--colors__purple-primary);
+
+  &:hover {
+    background-color: var(--colors__purple-primary);
+    color: var(--colors__white);
+    border-color: var(--colors__purple-primary);
+  }
+}
