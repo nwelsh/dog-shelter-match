@@ -16,15 +16,14 @@ interface DogCardProps {
   isFavorite: boolean;
   onToggleFavorite: (dogId: string) => void;
   isMatch?: boolean;
-  onClose?: (dogId: string) => void; // <-- new optional close handler
+  onClose?: (dogId: string) => void;
 }
 
 const DogCard = React.forwardRef<HTMLDivElement, DogCardProps>(
   ({ dog, isFavorite, onToggleFavorite, isMatch, onClose }, ref) => {
     const { img, name, breed, age, zip_code, id } = dog;
 
-    const handleCloseClick = (e: React.MouseEvent) => {
-      e.stopPropagation(); // prevent toggling favorite
+    const handleCloseClick = () => {
       if (onClose) onClose(id);
     };
 
@@ -51,8 +50,8 @@ const DogCard = React.forwardRef<HTMLDivElement, DogCardProps>(
               strokeLinejoin="round"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor"/>
-              <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor"/>
+              <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" />
+              <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" />
             </svg>
           </button>
         )}

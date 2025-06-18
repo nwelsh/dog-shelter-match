@@ -1,7 +1,6 @@
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "./Search.scss";
 import DogCard from "./DogCard";
-import gsap from "gsap";
 
 export interface Dog {
   id: string;
@@ -90,16 +89,12 @@ const SearchPage = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [matchDog, setMatchDog] = useState<Dog | null>(null);
-  const cardRefs = useRef([]);
-
   const totalPages = Math.ceil(total / pageSize);
-
-  console.log(favorites, favorites.length);
 
   useEffect(() => {
     fetchBreeds()
       .then(setBreeds)
-      .catch(() => console.error("Failed to fetch breeds"));
+      .catch(() => console.error("Failed to fetch: breeds"));
   }, []);
 
   useEffect(() => {
@@ -110,7 +105,7 @@ const SearchPage = () => {
         setDogs(dogs);
         setTotal(total);
       })
-      .catch(() => setError("Failed to fetch dogs"))
+      .catch(() => setError("Failed to fetch: dogs"))
       .finally(() => setLoading(false));
   }, [selectedBreed, sortOrder, currentPage]);
 
@@ -144,16 +139,6 @@ const SearchPage = () => {
   const displayedDogs = showFavoritesOnly
     ? dogs.filter((dog) => favorites.includes(dog.id))
     : dogs;
-
-  useEffect(() => {
-    gsap.from(cardRefs.current, {
-      opacity: 0,
-      y: 20,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: "power2.out",
-    });
-  }, [displayedDogs]);
 
   const handleCloseMatch = () => {
     setMatchDog(null);
@@ -207,7 +192,7 @@ const SearchPage = () => {
           disabled={favorites.length === 0}
           className="button"
         >
-          Match Me!
+          Match Me
         </button>
 
         {matchDog && (
@@ -216,14 +201,18 @@ const SearchPage = () => {
               <DogCard
                 dog={matchDog}
                 isFavorite={favorites.includes(matchDog.id)}
-                onToggleFavorite={() => {}} // or your handler if you want
+                onToggleFavorite={() => {}}
                 isMatch={true}
-                onClose={handleCloseMatch} // <-- pass the close handler here
+                onClose={handleCloseMatch}
               />
             </div>
           </div>
         )}
       </div>
+
+      {favorites.length === 0 && (
+        <p className="directions">Click on a card if you find a favorite!</p>
+      )}
 
       {loading ? (
         <p className="loading-text">Loading dogs...</p>
@@ -255,6 +244,7 @@ const SearchPage = () => {
               <button
                 onClick={() => setCurrentPage((p) => Math.max(p - 1, 0))}
                 disabled={currentPage === 0}
+                className="button"
               >
                 Previous
               </button>
@@ -264,6 +254,7 @@ const SearchPage = () => {
               <button
                 onClick={() => setCurrentPage((p) => p + 1)}
                 disabled={(currentPage + 1) * pageSize >= total}
+                className="button"
               >
                 Next
               </button>
