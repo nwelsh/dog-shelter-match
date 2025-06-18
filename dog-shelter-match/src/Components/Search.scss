@@ -28,7 +28,12 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
-  padding-left: 1rem
+  padding-left: 1rem;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-desktop) {
+    flex-direction: row;
+  }
 }
 
 .title {
@@ -87,6 +92,23 @@
     @include fonts__button;
 }
 
-.select-label, .select-option {
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
 
+  .heart-icon {
+    width: 20px;
+    height: 18.5px;
+    transition: transform 0.2s ease, fill 0.2s ease;
+  }
+
+  &.favorited .heart-icon {
+    fill: var(--colors__brand-primary);
+    stroke: var(--colors__brand-primary);
+  }
 }
