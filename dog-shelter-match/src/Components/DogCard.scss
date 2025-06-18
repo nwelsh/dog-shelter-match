@@ -15,7 +15,6 @@
     border-color 0.3s ease, transform 0.3s ease;
 
   &:not(.dog-card--match):hover {
-    // color: var(--colors__brand-secondary);
     transform: translate(.5rem, -.5rem);
   }
 }
