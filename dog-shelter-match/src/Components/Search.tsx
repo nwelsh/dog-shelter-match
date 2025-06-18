@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import "./Search.scss";
 import DogCard from "./DogCard";
 import gsap from "gsap";
-import FetchLogo from "../assets/Images/fetch-logo.jpg"
 
 export interface Dog {
   id: string;
@@ -95,7 +94,7 @@ const SearchPage = () => {
 
   const totalPages = Math.ceil(total / pageSize);
 
-  console.log(favorites, favorites.length)
+  console.log(favorites, favorites.length);
 
   useEffect(() => {
     fetchBreeds()
@@ -146,20 +145,22 @@ const SearchPage = () => {
     ? dogs.filter((dog) => favorites.includes(dog.id))
     : dogs;
 
-    useEffect(() => {
-      gsap.from(cardRefs.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.5,
-        stagger: 0.1, 
-        ease: "power2.out",
-      });
-    }, [displayedDogs]);
+  useEffect(() => {
+    gsap.from(cardRefs.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "power2.out",
+    });
+  }, [displayedDogs]);
+
+  const handleCloseMatch = () => {
+    setMatchDog(null);
+  };
 
   return (
     <div className="search-container">
-            {/* <img src={FetchLogo} alt='fetch-logo' className="logo-image"></img> */}
-
       <h2 className="title">Find Your Perfect Match</h2>
       <div className="search-controls">
         <label className="sort-select">
@@ -212,12 +213,12 @@ const SearchPage = () => {
         {matchDog && (
           <div className="match-container">
             <div className="match-card">
-              {/* TODO close match */}
               <DogCard
                 dog={matchDog}
                 isFavorite={favorites.includes(matchDog.id)}
-                onToggleFavorite={() => {}}
+                onToggleFavorite={() => {}} // or your handler if you want
                 isMatch={true}
+                onClose={handleCloseMatch} // <-- pass the close handler here
               />
             </div>
           </div>
@@ -234,8 +235,8 @@ const SearchPage = () => {
             {displayedDogs.length === 0 ? (
               <p className="paragraph">
                 {showFavoritesOnly
-                  ? "No favorited dogs yet."
-                  : "No dogs found."}
+                  ? "No favorited dogs yet! Click on a card to favorite a dog."
+                  : "No dogs found :("}
               </p>
             ) : (
               displayedDogs.map((dog) => (
@@ -249,23 +250,25 @@ const SearchPage = () => {
             )}
           </div>
 
-         {!showFavoritesOnly && <div className="pagination">
-            <button
-              onClick={() => setCurrentPage((p) => Math.max(p - 1, 0))}
-              disabled={currentPage === 0}
-            >
-              Previous
-            </button>
-            <p className="paragraph">
-              Page {currentPage + 1} of {totalPages}
-            </p> 
-            <button
-              onClick={() => setCurrentPage((p) => p + 1)}
-              disabled={(currentPage + 1) * pageSize >= total}
-            >
-              Next
-            </button>
-          </div>}
+          {!showFavoritesOnly && (
+            <div className="pagination">
+              <button
+                onClick={() => setCurrentPage((p) => Math.max(p - 1, 0))}
+                disabled={currentPage === 0}
+              >
+                Previous
+              </button>
+              <p className="paragraph">
+                Page {currentPage + 1} of {totalPages}
+              </p>
+              <button
+                onClick={() => setCurrentPage((p) => p + 1)}
+                disabled={(currentPage + 1) * pageSize >= total}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

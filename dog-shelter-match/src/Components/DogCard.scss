@@ -6,10 +6,10 @@
   padding: 1rem;
   margin: 1rem;
   border-radius: 15px;
-  
+
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 
   width: 100%;
   align-items: center;
@@ -18,13 +18,17 @@
     border-color 0.3s ease, transform 0.3s ease;
 
   &:not(.dog-card--match):hover {
-    transform: translate(.5rem, -.5rem);
+    transform: translate(0.5rem, -0.5rem);
   }
 
-  @media (min-width: $breakpoint-desktop) {
+  @media (min-width: $breakpoint-tablet) {
     width: auto;
     align-items: flex-start;
   }
+}
+
+.top-container {
+    display: flex;
 }
 
 .favorite-btn {
@@ -57,3 +61,16 @@
   @include fonts__p;
   margin: 0;
 }
+
+.exit-button {
+    align-self: flex-end;
+    border: none;
+    cursor: pointer;
+    color: var(--colors__purple-primary);
+    transition: color 0.3s ease, color 0.3s ease;
+  
+  
+    &:hover {
+      color: var(--colors__brand-secondary); 
+    }
+  }

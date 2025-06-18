@@ -8,8 +8,8 @@
   --container-padding: 100px;
 }
 
-$breakpoint-tablet: 480px;
-$breakpoint-desktop: 768px;
+$breakpoint-tablet: 620px;
+$breakpoint-desktop: 1024px;
 
 @mixin fonts__h1 {
   font-family: var(--font-family-base);
@@ -84,15 +84,17 @@ $breakpoint-desktop: 768px;
   font-size: 12px;
   font-weight: var(--size__normal);
   letter-spacing: 0.5px;
-  background-color: var(--colors__purple-primary);
   border-radius: 2rem;
-  color: var(--colors__white);
   padding: 0.5rem 1rem;
-  border: none;
+  border: 2px solid var(--colors__brand-primary);
   transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease;
+  border-color 0.3s ease;
+  background-color: transparent;
+  color: var(--colors__purple-primary);
 
   &:hover {
-    background-color: var(--colors__brand-primary);
+    background-color: var(--colors__purple-primary);
+    color: var(--colors__white);
+    border-color: var(--colors__purple-primary);
   }
 }
