@@ -52,3 +52,12 @@ export default tseslint.config({
   },
 })
 ```
+
+Hosted link: https://nwelsh.github.io/dog-shelter-match/
+
+
+To run locally 
+
+1. Clone repo
+2. npm i 
+3. npm run dev
