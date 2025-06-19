@@ -55,9 +55,11 @@ export default tseslint.config({
 
 Hosted link: https://nwelsh.github.io/dog-shelter-match/
 
+Figma designs: https://www.figma.com/design/cSqOSXN6PTKbvF4ulEaZB0/Dog-Shelter-Match?node-id=0-1&p=f&t=jGhmLqUeqLZV4GuJ-0
 
 To run locally 
 
-1. Clone repo
-2. npm i 
-3. npm run dev
+1. Clone repoAdd commentMore actions
+2. cd dog-shelter-match
+3. npm i
+4. npm run dev
